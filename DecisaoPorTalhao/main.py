@@ -2,6 +2,7 @@ class Node:
     def __init__(self, producao=None, atr=None):
         self.producao = producao
         self.atr = atr
+        self.next = None
         self.left = None
         self.right = None
         self.decision = None
@@ -16,10 +17,10 @@ def quick_sort_linked_list(head):
     greater_head = greater_tail = Node(0, 0)
 
     while head is not None:
-        if head.producao < pivot.producao:
+        if head.atr < pivot.atr:
             less_tail.next = head
             less_tail = less_tail.next
-        elif head.producao == pivot.producao:
+        elif head.atr == pivot.atr:
             equal_tail.next = head
             equal_tail = equal_tail.next
         else:
@@ -54,6 +55,9 @@ def get_tail(node):
     while node.next is not None:
         node = node.next
     return node
+
+# Restante do código permanece inalterado
+
 
 def build_decision_tree(head):
     if head is None:
