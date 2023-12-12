@@ -56,8 +56,6 @@ def get_tail(node):
         node = node.next
     return node
 
-# Restante do código permanece inalterado
-
 
 def build_decision_tree(head):
     if head is None:
@@ -65,20 +63,16 @@ def build_decision_tree(head):
 
     sorted_nodes = []
 
-    # Adiciona os nós ordenados a uma lista
     current = head
     while current is not None:
         sorted_nodes.append(Node(current.producao, current.atr))
         current = current.next
 
-    # Constrói a árvore de decisão recursivamente
     return build_tree_recursive(sorted_nodes)
 
 def insert_node(root, node):
-    # Verificar o valor de ATR do nó
     atr_value = node.atr
 
-    # Tomar decisões com base nas condições fornecidas
     if atr_value > 40:
         if atr_value > 70:
             node.decision = "Açúcar"
@@ -97,7 +91,6 @@ def build_tree_recursive(sorted_nodes):
     mid_index = len(sorted_nodes) // 2
     root = sorted_nodes[mid_index]
 
-    # Insere a decisão no nó
     insert_node(root, root)
 
     root.left = build_tree_recursive(sorted_nodes[:mid_index])
@@ -108,7 +101,6 @@ def build_tree_recursive(sorted_nodes):
 
 def print_decision_tree(node, talhao_number="1"):
     if node is not None:
-        # Insere a decisão no nó
         insert_node(node, node)
 
         print(
@@ -117,7 +109,6 @@ def print_decision_tree(node, talhao_number="1"):
         print_decision_tree(node.right, talhao_number=talhao_number + "1")
 
 
-# Solicitar ao usuário os valores para a lista encadeada
 num_talhoes = int(input("Digite o número de talhões: "))
 head = None
 
@@ -128,26 +119,21 @@ for i in range(num_talhoes):
     new_node.next = head
     head = new_node
 
-# Exibir a lista não ordenada
 print("\nLista não ordenada:")
 current = head
 while current is not None:
     print(f"Quantidade produzida: {current.producao}, ATR: {current.atr}")
     current = current.next
 
-# Aplicar o algoritmo Quick Sort para ordenar a lista encadeada
 head = quick_sort_linked_list(head)
 
-# Exibir a lista ordenada
 print("\nLista ordenada:")
 current = head
 while current is not None:
     print(f"Quantidade produzida: {current.producao}, ATR: {current.atr}")
     current = current.next
 
-# Construir a árvore de decisão
 decision_tree = build_decision_tree(head)
 
-# Exibir a árvore de decisão
 print("\nÁrvore de Decisão:")
 print_decision_tree(decision_tree)
